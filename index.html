@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Julia Głocka - Portfolio 2025</title>
+    <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+<body>
+    <div class="container">
+        <div class="menu-container" id="menuContainer">
+            <div class="circular-path"></div>
+            <div class="center-circle">Portfolio</div>
+            
+            <div class="menu-item" data-category="programming" data-index="0">
+                <div class="icon">💻</div>
+                <div class="label">Programming</div>
+            </div>
+            <div class="menu-item" data-category="testing" data-index="1">
+                <div class="icon">🧪</div>
+                <div class="label">Testing</div>
+            </div>
+            <div class="menu-item" data-category="gamedev" data-index="2">
+                <div class="icon">🎮</div>
+                <div class="label">Game Development</div>
+            </div>
+
+            <div class="navigation-arrows">
+                <button class="arrow-button" id="leftArrow">←</button>
+                <button class="arrow-button" id="rightArrow">→</button>
+            </div>
+        </div>
+
+        <div class="content-view" id="contentView">
+            <button class="back-button" id="backButton">← Back to Menu</button>
+            <div class="content-header">
+                <h1 id="categoryTitle"></h1>
+            </div>
+            <div class="items-grid" id="itemsGrid"></div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
