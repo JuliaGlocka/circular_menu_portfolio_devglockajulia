@@ -71,15 +71,13 @@ const categoryTitle = document.getElementById('categoryTitle');
 const itemsGrid = document.getElementById('itemsGrid');
 const backButton = document.getElementById('backButton');
 
-// Responsive radius calculation
-function getResponsiveRadius() {
-    if (window.innerWidth <= 360) return 110;
-    if (window.innerWidth <= 480) return 125;
-    if (window.innerWidth <= 768) return 150;
-    return 200;
+// Radius calculation
+function getRadius() {
+    const menuSize = menuContainer.offsetWidth;
+    return menuSize * 0.4;
 }
 
-let radius = getResponsiveRadius();
+let radius = getRadius();
 let currentRotation = 0;
 let isDragging = false;
 let dragStartAngle = 0;
@@ -264,9 +262,9 @@ let resizeTimeout;
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
-        radius = getResponsiveRadius();
+        radius = getRadius();
         positionItems();
-    }, 250);
+    }, 100);
 });
 
 // Initial positioning
