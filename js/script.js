@@ -67,7 +67,7 @@ const leftArrow = document.getElementById('leftArrow');
 const rightArrow = document.getElementById('rightArrow');
 const menuContainer = document.getElementById('menuContainer');
 const contentView = document.getElementById('contentView');
-const categoryTitle = document.getElementById('categoryTitle');
+const categoryTitle = document.getElementById("categoryTitle").textContent = "Projects";
 const itemsGrid = document.getElementById('itemsGrid');
 const backButton = document.getElementById('backButton');
 

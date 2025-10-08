@@ -103,7 +103,14 @@
             box-shadow: 0 0 15px rgba(125, 234, 176, 0.2);
             top: 50%;
             left: 50%;
+            -webkit-user-select: none;
+            /* Safari, iOS Safari */
+            -moz-user-select: none;
+            /* Firefox */
+            -ms-user-select: none;
+            /* Stare Edge/IE */
             user-select: none;
+            /* Nowoczesne przeglądarki */
             -webkit-tap-highlight-color: transparent;
             touch-action: none;
         }
