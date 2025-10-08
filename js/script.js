@@ -43,8 +43,10 @@ const data = {
         {
             type: 'project',
             title: '3D Platformer Game2D Platformer Game',
+            tagdescription: 'Details',
             description: 'Jump-And-Run platformer built with Unity. Featuring 5 worlds with 5 levels each and two distinct modes of gameplay. Original art assets, storyline and concept.',
             link: 'https://github.com/yourusername/platformer-game',
+            tagrole: 'Role',
             role: 'Level Designer, Quest Designer, Narrative Designer, Gameplay Designer, QA Tester'
         },
         {
@@ -64,8 +66,8 @@ const data = {
 
 // DOM elements
 const menuItems = document.querySelectorAll('.menu-item');
-const leftArrow = document.getElementById('leftArrow');
-const rightArrow = document.getElementById('rightArrow');
+/* const leftArrow = document.getElementById('leftArrow');
+const rightArrow = document.getElementById('rightArrow'); */
 const menuContainer = document.getElementById('menuContainer');
 const contentView = document.getElementById('contentView');
 const categoryTitle = document.getElementById("categoryTitle").textContent = "Projects";
@@ -97,16 +99,16 @@ function positionItems() {
     });
 }
 
-// Rotate items by arrow buttons
+/* // Rotate items by arrow buttons
 function rotateItems(direction) {
     const angleStep = (2 * Math.PI) / 3;
     currentRotation += direction * angleStep;
     positionItems();
-}
+} */
 
-// Arrow button event listeners
+/* // Arrow button event listeners
 leftArrow.addEventListener('click', () => rotateItems(-1));
-rightArrow.addEventListener('click', () => rotateItems(1));
+rightArrow.addEventListener('click', () => rotateItems(1)); */
 
 // Calculate angle from center
 function getAngleFromCenter(x, y) {
@@ -237,10 +239,22 @@ function showCategory(category) {
         const role = document.createElement('div');
         role.className = 'item-role';
         role.textContent = sanitizeText(item.role);
+
+         const tagdescription = document.createElement('div');
+        tagdescription.className = 'item-tagdescription';
+        tagdescription.textContent = sanitizeText(item.tagdescription);
+
+         const tagrole = document.createElement('div');
+        tagrole.className = 'item-tagrole';
+        tagrole.textContent = sanitizeText(item.tagrole);
+
+
         
         card.appendChild(tag);
         card.appendChild(title);
+        card.appendChild(tagdescription);
         card.appendChild(description);
+        card.appendChild(tagrole);
         card.appendChild(role);
         
         // Add link with security attributes
@@ -275,3 +289,49 @@ window.addEventListener('resize', () => {
 
 // Initial positioning
 positionItems();
+
+// === MATRIX BACKGROUND EFFECT ===
+const canvas = document.getElementById('matrixCanvas');
+const context = canvas.getContext('2d');
+
+// ustaw rozmiar canvasa na rozmiar okna
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+// kolumny i pozycje "deszczu"
+const fontSize = 15;
+const columns = Math.floor(canvas.width / fontSize);
+const drops = Array(columns).fill(0);
+
+function drawMatrix() {
+    // lekki efekt zanikania (czarne tło z przezroczystością)
+    context.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    // kolor i font "deszczu"
+    context.fillStyle = 'rgba(0, 255, 0, 0.25)';
+    context.font = fontSize + 'px monospace';
+
+    // losowe znaki w kolumnach
+    for (let i = 0; i < drops.length; i++) {
+        const text = String.fromCharCode(0x30A0 + Math.random() * 96);
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+
+        context.fillText(text, x, y);
+
+        if (y > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+        }
+        drops[i]++;
+    }
+}
+
+// odświeżanie co 50ms
+setInterval(drawMatrix, 50);
+
+// aktualizacja rozmiaru przy zmianie okna
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
