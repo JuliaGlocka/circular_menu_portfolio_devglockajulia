@@ -315,9 +315,15 @@
             margin-bottom: 15px;
         }
 
+        .item-role {
+            color: rgba(125, 234, 176, 0.8);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
         .item-link {
             display: inline-block;
-            color: #7DEAB0;
+            color: rgb(125, 234, 176);
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
@@ -325,7 +331,7 @@
         }
 
         .item-link:hover {
-            border-bottom: 1px solid #7DEAB0;
+            border-bottom: 1px solid rgb(125, 234, 176);
             text-shadow: 0 0 10px rgba(125, 234, 176, 0.5);
         }
 

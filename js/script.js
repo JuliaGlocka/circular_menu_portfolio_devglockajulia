@@ -42,9 +42,10 @@ const data = {
     gamedev: [
         {
             type: 'project',
-            title: '2D Platformer Game',
-            description: 'Retro-style platformer built with Unity featuring 20+ levels, custom physics engine, and original pixel art assets.',
-            link: 'https://github.com/yourusername/platformer-game'
+            title: '3D Platformer Game2D Platformer Game',
+            description: 'Jump-And-Run platformer built with Unity. Featuring 5 worlds with 5 levels each and two distinct modes of gameplay. Original art assets, storyline and concept.',
+            link: 'https://github.com/yourusername/platformer-game',
+            role: 'Level Designer, Quest Designer, Narrative Designer, Gameplay Designer, QA Tester'
         },
         {
             type: 'experience',
@@ -232,10 +233,15 @@ function showCategory(category) {
         const description = document.createElement('div');
         description.className = 'item-description';
         description.textContent = sanitizeText(item.description);
+
+        const role = document.createElement('div');
+        role.className = 'item-role';
+        role.textContent = sanitizeText(item.role);
         
         card.appendChild(tag);
         card.appendChild(title);
         card.appendChild(description);
+        card.appendChild(role);
         
         // Add link with security attributes
         if (item.link && isValidUrl(item.link)) {
