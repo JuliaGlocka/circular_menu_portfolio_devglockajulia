@@ -299,7 +299,9 @@ canvas.height = window.innerHeight;
 
 const fontSize = 15;
 const columns = Math.floor(canvas.width / fontSize);
-const drops = Array(columns).fill(0);
+const drops = Array.from({ length: columns }, () =>
+    Math.floor(Math.random() * canvas.height / fontSize)
+);
 
 function drawMatrix() {
     context.fillStyle = 'rgba(0, 0, 0, 0.05)';
