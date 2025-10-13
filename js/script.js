@@ -290,6 +290,22 @@ window.addEventListener('resize', () => {
 // Initial positioning
 positionItems();
 
+const matrixButton = document.getElementById("matrixButton");
+let isMatrixActive = true; // start włączony
+
+matrixButton.addEventListener("click", () => {
+    isMatrixActive = !isMatrixActive; // zmiana stanu
+
+    if (isMatrixActive) {
+        matrixButton.classList.add("active");
+        matrixButton.textContent = "MATRIX ON";
+    } else {
+        matrixButton.classList.remove("active");
+        matrixButton.textContent = "MATRIX OFF";
+    }
+});
+
+
 // === MATRIX BACKGROUND EFFECT ===
 const canvas = document.getElementById('matrixCanvas');
 const context = canvas.getContext('2d');
@@ -304,49 +320,49 @@ const drops = Array.from({ length: columns }, () =>
 );
 
 function drawMatrix() {
+    if (!isMatrixActive) return; // jeśli Matrix wyłączony, nic nie rysujemy
+
     context.fillStyle = 'rgba(0, 0, 0, 0.05)';
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     context.fillStyle = 'rgba(0, 255, 0, 0.25)';
     context.font = fontSize + 'px monospace';
 
-   const UNICODE_RANGES = [
-  [0x0020, 0x007E],   // Basic Latin
-  [0x00A0, 0x024F],   // Latin Extended
-  [0x0370, 0x03FF],   // Greek and Coptic
-  [0x0400, 0x04FF],   // Cyrillic
-  [0x0530, 0x058F],   // Armenian
-  [0x0590, 0x05FF],   // Hebrew
-  [0x0600, 0x06FF],   // Arabic
-  [0x0900, 0x097F],   // Devanagari (India)
-  [0x3040, 0x30FF],   // Hiragana + Katakana
-  [0x4E00, 0x9FFF],   // Chinese Han
-  [0x2200, 0x22FF],   // Mathematical symbols
-  [0x2300, 0x23FF],   // Misc technical
-];
+    const UNICODE_RANGES = [
+      [0x0020, 0x007E],
+      [0x00A0, 0x024F],
+      [0x0370, 0x03FF],
+      [0x0400, 0x04FF],
+      [0x0530, 0x058F],
+      [0x0590, 0x05FF],
+      [0x0600, 0x06FF],
+      [0x0900, 0x097F],
+      [0x3040, 0x30FF],
+      [0x4E00, 0x9FFF],
+      [0x2200, 0x22FF],
+      [0x2300, 0x23FF],
+    ];
 
-function randomUnicodeChar() {
-  
-  const [start, end] = UNICODE_RANGES[Math.floor(Math.random() * UNICODE_RANGES.length)];
-
-  const code = Math.floor(start + Math.random() * (end - start));
-  return String.fromCodePoint(code);
-}
-
-for (let i = 0; i < drops.length; i++) {
-    const text = randomUnicodeChar();
-    const x = i * fontSize;
-    const y = drops[i] * fontSize;
-
-    context.fillText(text, x, y);
-
-    if (y > canvas.height && Math.random() > 0.975) {
-        drops[i] = 0;
+    function randomUnicodeChar() {
+      const [start, end] = UNICODE_RANGES[Math.floor(Math.random() * UNICODE_RANGES.length)];
+      const code = Math.floor(start + Math.random() * (end - start));
+      return String.fromCodePoint(code);
     }
-    drops[i]++;
+
+    for (let i = 0; i < drops.length; i++) {
+        const text = randomUnicodeChar();
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+
+        context.fillText(text, x, y);
+
+        if (y > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+        }
+        drops[i]++;
+    }
 }
 
-}
 
 setInterval(drawMatrix, 50);
 
