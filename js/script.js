@@ -294,43 +294,60 @@ positionItems();
 const canvas = document.getElementById('matrixCanvas');
 const context = canvas.getContext('2d');
 
-// ustaw rozmiar canvasa na rozmiar okna
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-// kolumny i pozycje "deszczu"
 const fontSize = 15;
 const columns = Math.floor(canvas.width / fontSize);
 const drops = Array(columns).fill(0);
 
 function drawMatrix() {
-    // lekki efekt zanikania (czarne tło z przezroczystością)
     context.fillStyle = 'rgba(0, 0, 0, 0.05)';
     context.fillRect(0, 0, canvas.width, canvas.height);
 
-    // kolor i font "deszczu"
     context.fillStyle = 'rgba(0, 255, 0, 0.25)';
     context.font = fontSize + 'px monospace';
 
-    // losowe znaki w kolumnach
-    for (let i = 0; i < drops.length; i++) {
-        const text = String.fromCharCode(0x30A0 + Math.random() * 96);
-        const x = i * fontSize;
-        const y = drops[i] * fontSize;
+   const UNICODE_RANGES = [
+  [0x0020, 0x007E],   // Basic Latin
+  [0x00A0, 0x024F],   // Latin Extended
+  [0x0370, 0x03FF],   // Greek and Coptic
+  [0x0400, 0x04FF],   // Cyrillic
+  [0x0530, 0x058F],   // Armenian
+  [0x0590, 0x05FF],   // Hebrew
+  [0x0600, 0x06FF],   // Arabic
+  [0x0900, 0x097F],   // Devanagari (India)
+  [0x3040, 0x30FF],   // Hiragana + Katakana
+  [0x4E00, 0x9FFF],   // Chinese Han
+  [0x2200, 0x22FF],   // Mathematical symbols
+  [0x2300, 0x23FF],   // Misc technical
+];
 
-        context.fillText(text, x, y);
+function randomUnicodeChar() {
+  
+  const [start, end] = UNICODE_RANGES[Math.floor(Math.random() * UNICODE_RANGES.length)];
 
-        if (y > canvas.height && Math.random() > 0.975) {
-            drops[i] = 0;
-        }
-        drops[i]++;
-    }
+  const code = Math.floor(start + Math.random() * (end - start));
+  return String.fromCodePoint(code);
 }
 
-// odświeżanie co 50ms
+for (let i = 0; i < drops.length; i++) {
+    const text = randomUnicodeChar();
+    const x = i * fontSize;
+    const y = drops[i] * fontSize;
+
+    context.fillText(text, x, y);
+
+    if (y > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+    }
+    drops[i]++;
+}
+
+}
+
 setInterval(drawMatrix, 50);
 
-// aktualizacja rozmiaru przy zmianie okna
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;

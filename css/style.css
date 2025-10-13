@@ -54,7 +54,7 @@
             transform: translate(-50%, -50%);
             width: var(--circle-size);
             height: var(--circle-size);
-            background: transparent;
+            background: rgb(15, 23, 42);
             border: 2px solid rgb(125, 234, 176);
             border-radius: 50%;
             display: flex;
@@ -71,7 +71,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* przycinanie w proporcjach */
+            /* cut in proportions */
             border-radius: 50%;
             display: block;
         }
@@ -110,7 +110,7 @@
             -ms-user-select: none;
             /* Stare Edge/IE */
             user-select: none;
-            /* mODERN BROWSERS */
+            /* Modern browsers */
             -webkit-tap-highlight-color: transparent;
             touch-action: none;
         }
@@ -132,16 +132,13 @@
             color: var(--primary-color);
             text-align: center;
             margin-bottom: calc(var(--item-size) * 0.07);
-            /* nieco większy odstęp od ikony */
             line-height: 1.2;
             pointer-events: none;
         }
 
         .menu-item .icon {
             font-size: var(--icon-size);
-            /* używa istniejącej zmiennej = ~0.26 * item-size */
             margin-top: calc(var(--item-size) * 0.02);
-            /* subtelne wyrównanie do środka */
             pointer-events: none;
             filter: grayscale(1) brightness(0) invert(1);
             opacity: 0.9;
@@ -158,7 +155,7 @@
             bottom: calc(var(--menu-size) * -0.16);
             left: 50%;
             transform: translateX(-50%);
-        } */
+        } 
 
         .arrow-button {
             width: var(--arrow-size);
@@ -185,6 +182,7 @@
         .arrow-button:active {
             transform: scale(0.95);
         }
+            */
 
         .content-view {
             display: none;
@@ -208,7 +206,7 @@
         }
 
         .back-button {
-            background: transparent;
+            background: rgb(15, 23, 42);
             color: rgb(125, 234, 176);
             border: 2px solid rgb(125, 234, 176);
             padding: 12px 30px;
@@ -411,5 +409,5 @@
     width: 100%;
     height: 100%;
     background: rgb(15, 23, 42);
-    z-index: -1; /* dzięki temu jest ZA wszystkimi elementami */
+    z-index: -1; /*behind all elements*/
 }
