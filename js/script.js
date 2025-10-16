@@ -343,11 +343,15 @@ function drawMatrix() {
       [0x2300, 0x23FF],
     ];
 
-    function randomUnicodeChar() {
-      const [start, end] = UNICODE_RANGES[Math.floor(Math.random() * UNICODE_RANGES.length)];
-      const code = Math.floor(start + Math.random() * (end - start));
-      return String.fromCodePoint(code);
-    }
+function randomUnicodeChar() {
+  let char;
+  do {
+    const [start, end] = UNICODE_RANGES[Math.floor(Math.random() * UNICODE_RANGES.length)];
+    const code = Math.floor(start + Math.random() * (end - start));
+    char = String.fromCodePoint(code);
+  } while (/\p{Extended_Pictographic}/u.test(char)); // skip emoji/pictographic chars
+  return char;
+}
 
     for (let i = 0; i < drops.length; i++) {
         const text = randomUnicodeChar();

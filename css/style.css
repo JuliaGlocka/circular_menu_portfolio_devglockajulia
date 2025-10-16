@@ -30,7 +30,7 @@
     position: fixed;
     top: 20px;
     right: 20px;
-    z-index: 10; /* wyżej niż canvas */
+    z-index: 10;
     padding: 10px 20px;
     border: 1px solid #0f0;
     background: rgba(0, 0, 0, 0.6);
