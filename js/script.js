@@ -148,13 +148,13 @@ function sanitizeText(text) {
     return div.textContent;
 }
 
-// Menu item click and drag handlers
 menuItems.forEach(item => {
     item.addEventListener('click', (e) => {
         if (!isDragging) {
             const category = item.getAttribute('data-category');
             showCategory(category);
         }
+        e.stopPropagation();
     });
 
     // Mouse events
@@ -172,6 +172,15 @@ menuItems.forEach(item => {
         dragStartAngle = getAngleFromCenter(touch.clientX, touch.clientY);
         rotationAtDragStart = currentRotation;
         e.preventDefault();
+    }, { passive: false });
+    
+    // Add touchend handler to detect tap vs drag
+    item.addEventListener('touchend', (e) => {
+        if (!isDragging && dragStartAngle !== 0) {
+            const category = item.getAttribute('data-category');
+            showCategory(category);
+            e.preventDefault();
+        }
     }, { passive: false });
 });
 
