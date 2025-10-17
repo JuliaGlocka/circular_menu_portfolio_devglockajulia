@@ -96,7 +96,11 @@ const linkTexts = [
 // Radius calculation
 function getRadius() {
     const menuSize = menuContainer.offsetWidth;
-    return menuSize * 0.4;
+    const circleSize = menuSize * 0.28;
+    // Increased from 0.4 to 0.42 to ensure better spacing
+    // Also account for the circle size to prevent overlap
+    const baseRadius = menuSize * 0.42;
+    return Math.max(baseRadius, circleSize * 1.2);
 }
 
 let radius = getRadius();
@@ -214,6 +218,10 @@ document.addEventListener('touchend', () => {
 backButton.addEventListener('click', () => {
     contentView.classList.remove('active');
     menuContainer.classList.remove('hidden');
+    
+    // Recalculate radius and reposition items when returning
+    radius = getRadius();
+    positionItems();
 });
 
 // Show category content
