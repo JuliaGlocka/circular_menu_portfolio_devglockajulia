@@ -22,21 +22,10 @@ const data = {
     testing: [
         {
             type: 'project',
-            title: 'Automated Testing Framework',
-            description: 'Custom testing framework built with Selenium and Python for end-to-end testing of web applications with CI/CD integration.',
-            link: 'https://github.com/yourusername/test-framework'
-        },
-        {
-            type: 'experience',
-            title: 'QA Lead at SoftwareCo',
-            description: 'Managed testing team of 5 engineers. Reduced bug escape rate by 60% through implementation of comprehensive test automation.',
-            link: ''
-        },
-        {
-            type: 'project',
-            title: 'Performance Testing Suite',
-            description: 'Load testing solution using JMeter and Grafana for monitoring application performance under various stress conditions.',
-            link: ''
+            title: 'SwagLab Test Automation Framework',
+            description: 'A production-grade test automation framework built with C# .NET 8 and Selenium WebDriver for comprehensive UI testing of the SauceDemo application. The framework leverages the Page Object Model design pattern to maintain clean separation between test logic and UI element locators, ensuring high maintainability and reusability. It utilizes xUnit for test execution, log4net for comprehensive logging, and WebDriverManager for automatic cross-platform browser driver resolution. Cross-browser support enables testing across Chrome, Firefox, Edge, Safari, and Internet Explorer through centralized configuration. Parallel test execution is configured via xunit.runner.json, allowing multiple test collections to run simultaneously. The framework implements explicit waits with WebDriverWait and ExpectedConditions for reliable element interaction. Comprehensive test coverage includes login validation scenarios (empty credentials, valid authentication, invalid credentials) and WebDriver factory unit tests. Dual-appender log4net configuration outputs logs to console and file with detailed timestamps, providing complete visibility into test execution flow including browser initialization, UI interactions, assertions, and driver cleanup.',
+            link: 'https://github.com/JuliaGlocka/SwagLab',
+            linkIndex: 0
         }
     ],
     gamedev: [
