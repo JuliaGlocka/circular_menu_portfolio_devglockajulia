@@ -413,3 +413,21 @@
             z-index: -1;
             /* behind all elements */
         }
+
+       /* Wyrównanie kart w poziomie, jeśli jest ich mało */
+.items-grid.flex-center {
+    display: flex;            /* konieczne, żeby justify-content działało */
+    flex-wrap: wrap;          
+    justify-content: center;  /* karty wyśrodkowane */
+    gap: 20px;                /* kontrolujemy odstępy */
+    max-width: 800px;         /* ograniczamy szerokość siatki dla estetyki */
+    margin: 0 auto;           /* wyśrodkowanie względem strony */
+}
+
+.items-grid.flex-center > * {
+    flex: 0 0 auto;           /* nie rozciągaj automatycznie */
+    width: 350px;             /* stała szerokość dla estetyki */
+    max-width: 90%;           /* responsywność dla małych ekranów */
+}
+
+

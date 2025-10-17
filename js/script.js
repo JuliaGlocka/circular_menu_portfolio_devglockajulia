@@ -39,7 +39,7 @@ const data = {
             tagrole: 'Role',
             role: 'Level Designer, Quest Designer, Narrative Designer, Gameplay Designer, QA Tester'
         },
-                {
+        {
             type: 'experience',
             title: 'Lionbridge',
             tagdescription: 'Details',
@@ -48,7 +48,7 @@ const data = {
             role: 'Tester',
             link: 'https://games.lionbridge.com/services/game-testing/',
             linkIndex: 3,
-            
+
         },
         {
             type: 'experience',
@@ -57,11 +57,11 @@ const data = {
             link: 'https://koulutuskalenteri.xamk.fi/en/open-amk-courses/introduction-to-video-games-creation-1-35-ects-cr-3/',
             linkIndex: 2,
         },
-        {
+/*         {
             type: 'experience',
             title: 'Syrenka Jam',
             description: 'Completed a two-week intensive game development course using Unity with the Syrenka Jam team (Farmind Studio / PlayWay). Collaborated with teammates on rapid prototyping and game production, strengthening technical skills and experience in fast-paced, collaborative game development.',
-        }
+        } */
     ]
 };
 
@@ -162,7 +162,7 @@ menuItems.forEach(item => {
         rotationAtDragStart = currentRotation;
         e.preventDefault();
     }, { passive: false });
-    
+
     // Add touchend handler to detect tap vs drag
     item.addEventListener('touchend', (e) => {
         if (!isDragging && dragStartAngle !== 0) {
@@ -216,7 +216,7 @@ document.addEventListener('touchend', () => {
 backButton.addEventListener('click', () => {
     contentView.classList.remove('active');
     menuContainer.classList.remove('hidden');
-    
+
     // Recalculate radius and reposition items when returning
     radius = getRadius();
     positionItems();
@@ -234,35 +234,35 @@ function showCategory(category) {
     categoryTitle.textContent = titles[category];
     itemsGrid.innerHTML = '';
 
-   categoryData.forEach(item => {
-    const card = document.createElement('div');
-    card.className = 'item-card';
+    categoryData.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'item-card';
 
-    const tag = document.createElement('span');
-    tag.className = `item-tag ${item.type}`;
-    tag.textContent = sanitizeText(item.type);
+        const tag = document.createElement('span');
+        tag.className = `item-tag ${item.type}`;
+        tag.textContent = sanitizeText(item.type);
 
-    const title = document.createElement('div');
-    title.className = 'item-title';
-    title.textContent = sanitizeText(item.title);
+        const title = document.createElement('div');
+        title.className = 'item-title';
+        title.textContent = sanitizeText(item.title);
 
-    const description = document.createElement('div');
-    description.className = 'item-description';
+        const description = document.createElement('div');
+        description.className = 'item-description';
 
-    // === tutaj obsługujemy nowe linie ===
-    description.innerHTML = sanitizeText(item.description).replaceAll('\n', '<br>');
+        // === tutaj obsługujemy nowe linie ===
+        description.innerHTML = sanitizeText(item.description).replaceAll('\n', '<br>');
 
-    const role = document.createElement('div');
-    role.className = 'item-role';
-    role.textContent = sanitizeText(item.role || ''); // w razie gdy role nie istnieje
+        const role = document.createElement('div');
+        role.className = 'item-role';
+        role.textContent = sanitizeText(item.role || ''); // w razie gdy role nie istnieje
 
-    const tagdescription = document.createElement('div');
-    tagdescription.className = 'item-tagdescription';
-    tagdescription.textContent = sanitizeText(item.tagdescription || '');
+        const tagdescription = document.createElement('div');
+        tagdescription.className = 'item-tagdescription';
+        tagdescription.textContent = sanitizeText(item.tagdescription || '');
 
-    const tagrole = document.createElement('div');
-    tagrole.className = 'item-tagrole';
-    tagrole.textContent = sanitizeText(item.tagrole || '');
+        const tagrole = document.createElement('div');
+        tagrole.className = 'item-tagrole';
+        tagrole.textContent = sanitizeText(item.tagrole || '');
 
         card.appendChild(tag);
         card.appendChild(title);
@@ -290,10 +290,16 @@ function showCategory(category) {
             link.rel = 'noopener noreferrer';
             card.appendChild(link);
         }
-
-
         itemsGrid.appendChild(card);
     });
+if (itemsGrid.children.length === 1) {
+    itemsGrid.classList.add('flex-center');      
+    itemsGrid.children[0].style.width = '800px';}
+    else if (itemsGrid.children.length <= 2) {
+        itemsGrid.classList.add('flex-center');
+    } else {
+        itemsGrid.classList.remove('flex-center');
+    }
 
     menuContainer.classList.add('hidden');
     setTimeout(() => {
@@ -313,6 +319,8 @@ window.addEventListener('resize', () => {
 
 // Initial positioning
 positionItems();
+
+// === MATRIX BUTTON ===
 
 const matrixButton = document.getElementById("matrixButton");
 let isMatrixActive = true; // start włączony
