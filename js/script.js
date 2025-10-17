@@ -50,17 +50,28 @@ const data = {
             tagrole: 'Role',
             role: 'Level Designer, Quest Designer, Narrative Designer, Gameplay Designer, QA Tester'
         },
-        {
+                {
             type: 'experience',
-            title: 'Game Developer at IndieStudio',
-            description: 'Developed gameplay mechanics and UI systems for mobile games with 500K+ downloads. Specialized in Unity and C#.',
-            link: ''
+            title: 'Lionbridge',
+            tagdescription: 'Details',
+            description: 'Game Tester at Lionbridge for Activision\'s Call of Duty: Modern Warfare 2 and 3. Performed diverse QA testing methodologies (functional, non-functional, regression, smoke, exploratory, ad hoc, compatibility) across PC and console platforms using checklists. Documented findings in Jira with technical reports, collaborating to maintain quality standards for major AAA releases.',
+            tagrole: 'Role',
+            role: 'Tester',
+            link: 'https://games.lionbridge.com/services/game-testing/',
+            linkIndex: 3,
+            
         },
         {
-            type: 'project',
-            title: 'Multiplayer Puzzle Game',
-            description: 'Real-time multiplayer puzzle game with WebSocket integration, matchmaking system, and global leaderboards.',
-            link: 'https://github.com/yourusername/puzzle-game'
+            type: 'experience',
+            title: 'Introduction to Video Games Creation',
+            description: 'Gained hands-on experience with Unity game engine and game production fundamentals through XAMK\'s Introduction to Video Games Creation course. Completed coursework in game design, history, and analysis, and developed "The Return," a text-based game showcasing narrative design and programming concepts. Currently the course is no longer available to foreigners.',
+            link: 'https://koulutuskalenteri.xamk.fi/en/open-amk-courses/introduction-to-video-games-creation-1-35-ects-cr-3/',
+            linkIndex: 2,
+        },
+        {
+            type: 'experience',
+            title: 'Syrenka Jam',
+            description: 'Completed a two-week intensive game development course using Unity with the Syrenka Jam team (Farmind Studio / PlayWay). Collaborated with teammates on rapid prototyping and game production, strengthening technical skills and experience in fast-paced, collaborative game development.',
         }
     ]
 };
@@ -79,6 +90,8 @@ const link = document.querySelector('#myLink');
 const linkTexts = [
     'View on GitHub →',
     'See the Trailer →',
+    'Course Page →',
+    'Lionbridge Test Team →'
 ];
 // Radius calculation
 function getRadius() {
