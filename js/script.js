@@ -42,10 +42,11 @@ const data = {
     gamedev: [
         {
             type: 'project',
-            title: '3D Platformer Game2D Platformer Game',
+            title: 'Axolotl Knight',
             tagdescription: 'Details',
-            description: 'Jump-And-Run platformer built with Unity. Featuring 5 worlds with 5 levels each and two distinct modes of gameplay. Original art assets, storyline and concept.',
-            link: 'https://github.com/yourusername/platformer-game',
+            description: 'A 3D jump-and-run platformer built with Unity. The gamee fatures 5 worlds with 5 levels each, enemy combat, obstacle navigation, and two distinct gameplay modes. Includes original art assets, storyline, and concept. Originally developed for Nintendo Switch. Due to publisher circumstances, the game is currently available on itch.io.',
+            link: 'https://youtu.be/9mBrIj2PMsU',
+            linkIndex: 1,
             tagrole: 'Role',
             role: 'Level Designer, Quest Designer, Narrative Designer, Gameplay Designer, QA Tester'
         },
@@ -73,7 +74,12 @@ const contentView = document.getElementById('contentView');
 const categoryTitle = document.getElementById("categoryTitle").textContent = "Projects";
 const itemsGrid = document.getElementById('itemsGrid');
 const backButton = document.getElementById('backButton');
+const link = document.querySelector('#myLink');
 
+const linkTexts = [
+    'View on GitHub →',
+    'See the Trailer →',
+];
 // Radius calculation
 function getRadius() {
     const menuSize = menuContainer.offsetWidth;
@@ -89,26 +95,15 @@ let rotationAtDragStart = 0;
 // Position items on the circular path
 function positionItems() {
     const angleStep = (2 * Math.PI) / 3;
-    
+
     menuItems.forEach((item, index) => {
         const angle = currentRotation + (index * angleStep) - Math.PI / 2;
         const x = Math.cos(angle) * radius;
         const y = Math.sin(angle) * radius;
-        
+
         item.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
     });
 }
-
-/* // Rotate items by arrow buttons
-function rotateItems(direction) {
-    const angleStep = (2 * Math.PI) / 3;
-    currentRotation += direction * angleStep;
-    positionItems();
-} */
-
-/* // Arrow button event listeners
-leftArrow.addEventListener('click', () => rotateItems(-1));
-rightArrow.addEventListener('click', () => rotateItems(1)); */
 
 // Calculate angle from center
 function getAngleFromCenter(x, y) {
@@ -223,15 +218,15 @@ function showCategory(category) {
     categoryData.forEach(item => {
         const card = document.createElement('div');
         card.className = 'item-card';
-        
+
         const tag = document.createElement('span');
         tag.className = `item-tag ${item.type}`;
         tag.textContent = sanitizeText(item.type);
-        
+
         const title = document.createElement('div');
         title.className = 'item-title';
         title.textContent = sanitizeText(item.title);
-        
+
         const description = document.createElement('div');
         description.className = 'item-description';
         description.textContent = sanitizeText(item.description);
@@ -240,34 +235,44 @@ function showCategory(category) {
         role.className = 'item-role';
         role.textContent = sanitizeText(item.role);
 
-         const tagdescription = document.createElement('div');
+        const tagdescription = document.createElement('div');
         tagdescription.className = 'item-tagdescription';
         tagdescription.textContent = sanitizeText(item.tagdescription);
 
-         const tagrole = document.createElement('div');
+        const tagrole = document.createElement('div');
         tagrole.className = 'item-tagrole';
         tagrole.textContent = sanitizeText(item.tagrole);
 
 
-        
+
         card.appendChild(tag);
         card.appendChild(title);
         card.appendChild(tagdescription);
         card.appendChild(description);
         card.appendChild(tagrole);
         card.appendChild(role);
-        
+
         // Add link with security attributes
         if (item.link && isValidUrl(item.link)) {
             const link = document.createElement('a');
             link.className = 'item-link';
             link.href = item.link;
-            link.textContent = 'View on GitHub →';
+
+            // jeśli karta ma zdefiniowany numer tekstu → wybierz go
+            if (typeof item.linkIndex === 'number' && linkTexts[item.linkIndex]) {
+                link.textContent = linkTexts[item.linkIndex];
+            }
+            // jeśli nie ma indexu → nie dodawaj żadnego tekstu
+            else {
+                link.textContent = '';
+            }
+
             link.target = '_blank';
             link.rel = 'noopener noreferrer';
             card.appendChild(link);
         }
-        
+
+
         itemsGrid.appendChild(card);
     });
 
@@ -329,29 +334,29 @@ function drawMatrix() {
     context.font = fontSize + 'px monospace';
 
     const UNICODE_RANGES = [
-      [0x0020, 0x007E],
-      [0x00A0, 0x024F],
-      [0x0370, 0x03FF],
-      [0x0400, 0x04FF],
-      [0x0530, 0x058F],
-      [0x0590, 0x05FF],
-      [0x0600, 0x06FF],
-      [0x0900, 0x097F],
-      [0x3040, 0x30FF],
-      [0x4E00, 0x9FFF],
-      [0x2200, 0x22FF],
-      [0x2300, 0x23FF],
+        [0x0020, 0x007E],
+        [0x00A0, 0x024F],
+        [0x0370, 0x03FF],
+        [0x0400, 0x04FF],
+        [0x0530, 0x058F],
+        [0x0590, 0x05FF],
+        [0x0600, 0x06FF],
+        [0x0900, 0x097F],
+        [0x3040, 0x30FF],
+        [0x4E00, 0x9FFF],
+        [0x2200, 0x22FF],
+        [0x2300, 0x23FF],
     ];
 
-function randomUnicodeChar() {
-  let char;
-  do {
-    const [start, end] = UNICODE_RANGES[Math.floor(Math.random() * UNICODE_RANGES.length)];
-    const code = Math.floor(start + Math.random() * (end - start));
-    char = String.fromCodePoint(code);
-  } while (/\p{Extended_Pictographic}/u.test(char)); // skip emoji/pictographic chars
-  return char;
-}
+    function randomUnicodeChar() {
+        let char;
+        do {
+            const [start, end] = UNICODE_RANGES[Math.floor(Math.random() * UNICODE_RANGES.length)];
+            const code = Math.floor(start + Math.random() * (end - start));
+            char = String.fromCodePoint(code);
+        } while (/\p{Extended_Pictographic}/u.test(char)); // skip emoji/pictographic chars
+        return char;
+    }
 
     for (let i = 0; i < drops.length; i++) {
         const text = randomUnicodeChar();
