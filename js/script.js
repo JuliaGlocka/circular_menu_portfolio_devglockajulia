@@ -23,7 +23,7 @@ const data = {
         {
             type: 'project',
             title: 'SwagLab Test Automation Framework',
-            description: 'A production-grade test automation framework built with C# .NET 8 and Selenium WebDriver for comprehensive UI testing of the SauceDemo application. The framework leverages the Page Object Model design pattern to maintain clean separation between test logic and UI element locators, ensuring high maintainability and reusability. It utilizes xUnit for test execution, log4net for comprehensive logging, and WebDriverManager for automatic cross-platform browser driver resolution. Cross-browser support enables testing across Chrome, Firefox, Edge, Safari, and Internet Explorer through centralized configuration. Parallel test execution is configured via xunit.runner.json, allowing multiple test collections to run simultaneously. The framework implements explicit waits with WebDriverWait and ExpectedConditions for reliable element interaction. Comprehensive test coverage includes login validation scenarios (empty credentials, valid authentication, invalid credentials) and WebDriver factory unit tests. Dual-appender log4net configuration outputs logs to console and file with detailed timestamps, providing complete visibility into test execution flow including browser initialization, UI interactions, assertions, and driver cleanup.',
+            description: 'A production-grade test automation framework built with C# .NET 8 and Selenium WebDriver for comprehensive UI testing of the SauceDemo application. The framework leverages the Page Object Model design pattern to maintain clean separation between test logic and UI element locators, ensuring high maintainability and reusability. It utilizes xUnit for test execution, log4net for comprehensive logging, and WebDriverManager for automatic cross-platform browser driver resolution.\n\n Cross-browser support enables testing across Chrome, Firefox, Edge, Safari, and Internet Explorer through centralized configuration. Parallel test execution is configured via xunit.runner.json, allowing multiple test collections to run simultaneously. The framework implements explicit waits with WebDriverWait and ExpectedConditions for reliable element interaction. Comprehensive test coverage includes login validation scenarios (empty credentials, valid authentication, invalid credentials) and WebDriver factory unit tests. Dual-appender log4net configuration outputs logs to console and file with detailed timestamps, providing complete visibility into test execution flow including browser initialization, UI interactions, assertions, and driver cleanup.',
             link: 'https://github.com/JuliaGlocka/SwagLab',
             linkIndex: 0
         }
@@ -234,35 +234,35 @@ function showCategory(category) {
     categoryTitle.textContent = titles[category];
     itemsGrid.innerHTML = '';
 
-    categoryData.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'item-card';
+   categoryData.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'item-card';
 
-        const tag = document.createElement('span');
-        tag.className = `item-tag ${item.type}`;
-        tag.textContent = sanitizeText(item.type);
+    const tag = document.createElement('span');
+    tag.className = `item-tag ${item.type}`;
+    tag.textContent = sanitizeText(item.type);
 
-        const title = document.createElement('div');
-        title.className = 'item-title';
-        title.textContent = sanitizeText(item.title);
+    const title = document.createElement('div');
+    title.className = 'item-title';
+    title.textContent = sanitizeText(item.title);
 
-        const description = document.createElement('div');
-        description.className = 'item-description';
-        description.textContent = sanitizeText(item.description);
+    const description = document.createElement('div');
+    description.className = 'item-description';
 
-        const role = document.createElement('div');
-        role.className = 'item-role';
-        role.textContent = sanitizeText(item.role);
+    // === tutaj obsługujemy nowe linie ===
+    description.innerHTML = sanitizeText(item.description).replaceAll('\n', '<br>');
 
-        const tagdescription = document.createElement('div');
-        tagdescription.className = 'item-tagdescription';
-        tagdescription.textContent = sanitizeText(item.tagdescription);
+    const role = document.createElement('div');
+    role.className = 'item-role';
+    role.textContent = sanitizeText(item.role || ''); // w razie gdy role nie istnieje
 
-        const tagrole = document.createElement('div');
-        tagrole.className = 'item-tagrole';
-        tagrole.textContent = sanitizeText(item.tagrole);
+    const tagdescription = document.createElement('div');
+    tagdescription.className = 'item-tagdescription';
+    tagdescription.textContent = sanitizeText(item.tagdescription || '');
 
-
+    const tagrole = document.createElement('div');
+    tagrole.className = 'item-tagrole';
+    tagrole.textContent = sanitizeText(item.tagrole || '');
 
         card.appendChild(tag);
         card.appendChild(title);
