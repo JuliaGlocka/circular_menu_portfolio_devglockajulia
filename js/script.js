@@ -7,6 +7,22 @@ const data = {
             link: 'https://github.com/JuliaGlocka/DbStructureEmployees',
             linkIndex: 0
         },
+
+                {
+            type: 'project',
+            title: 'WeatherApp - Weather Forecast CLI Application',
+            description: 'A production-ready weather forecast CLI tool built with Python 3 and PostgreSQL, demonstrating API integration, database operations, and interactive user experience design. The application leverages the Open-Meteo public weather API for 16-day forecast data, combining it with a PostgreSQL city database for intelligent location resolution that supports both local and English city names through case-insensitive pattern matching. The architecture implements clean separation between data retrieval (API layer), data persistence (PostgreSQL integration), and presentation (tabulate-formatted console output). Timezone handling spans 15 global regions with UTC offset mapping, while comprehensive error handling manages network failures and database connection issues. The modular design with single-responsibility functions promotes maintainability and testability, following Python best practices for CLI application development.',
+            link: 'https://github.com/JuliaGlocka/WeatherApp',
+            linkIndex: 0
+        },
+
+                        {
+            type: 'project',
+            title: 'Auth-System - Secure Python Authentication System',
+            description: 'A secure Python-based authentication system implementing industry-standard cryptographic practices for user registration and login management. The application leverages bcrypt for adaptive password hashing with salt generation, Fernet symmetric encryption for credential protection, and PostgreSQL for persistent data storage with parameterized queries to prevent SQL injection attacks. The architecture demonstrates modular design principles with separation of concerns across distinct components: signup flow with email format validation and password complexity enforcement, login authentication with encrypted credential verification, and centralized configuration management for database connections and cryptographic key handling.\n\nSecurity implementation includes bcrypt\'s key derivation function with configurable work factors for future-proof password hashing, Fernet encryption using 256-bit AES in CBC mode with HMAC authentication for data confidentiality and integrity, and UUID generation for unique user identification. The PostgreSQL integration replaces file-based storage with ACID-compliant database transactions, supporting concurrent user operations and data consistency guarantees. The modular codebase follows single-responsibility principle with dedicated modules for encryption operations, validation logic, authentication flow, and configuration management, while input sanitization prevents duplicate email registration through database uniqueness checks.',
+            link: 'https://github.com/JuliaGlocka/auth-system',
+            linkIndex: 0
+        },
     ],
     testing: [
         {
