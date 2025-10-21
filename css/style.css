@@ -238,31 +238,34 @@
             text-shadow: 0 0 20px rgba(125, 234, 176, 0.3);
         }
 
-        /* Flexbox fallback for older browsers */
-        .items-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 25px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
+       /* Flexbox fallback for older browsers */
+.items-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    max-width: 1000px;
+    margin: 0 auto;
+    justify-content: center;
+}
 
-        .items-grid>* {
-            flex: 1 1 350px;
-            min-width: 0;
-        }
+.items-grid>* {
+    flex: 1 1 calc(50% - 12.5px);
+    min-width: 0;
+}
 
-        /* Modern grid for supported browsers */
-        @supports (display: grid) {
-            .items-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            }
+/* Modern grid for supported browsers */
+@supports (display: grid) {
+    .items-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        max-width: 800px;
+        margin: 0 auto;
+    }
 
-            .items-grid>* {
-                flex: none;
-            }
-        }
+    .items-grid>* {
+        flex: none;
+    }
+}
 
         .item-card {
             background: transparent;
@@ -413,21 +416,3 @@
             z-index: -1;
             /* behind all elements */
         }
-
-       /* Wyrównanie kart w poziomie, jeśli jest ich mało */
-.items-grid.flex-center {
-    display: flex;            /* konieczne, żeby justify-content działało */
-    flex-wrap: wrap;          
-    justify-content: center;  /* karty wyśrodkowane */
-    gap: 20px;                /* kontrolujemy odstępy */
-    max-width: 800px;         /* ograniczamy szerokość siatki dla estetyki */
-    margin: 0 auto;           /* wyśrodkowanie względem strony */
-}
-
-.items-grid.flex-center > * {
-    flex: 0 0 auto;           /* nie rozciągaj automatycznie */
-    width: 350px;             /* stała szerokość dla estetyki */
-    max-width: 90%;           /* responsywność dla małych ekranów */
-}
-
-

@@ -2,22 +2,11 @@ const data = {
     programming: [
         {
             type: 'project',
-            title: 'E-commerce Platform',
-            description: 'Full-stack web application built with React and Node.js featuring user authentication, payment integration, and real-time inventory management.',
-            link: 'https://github.com/yourusername/ecommerce-platform'
+            title: 'Employee Hierarchy Management System',
+            description: 'A production-ready employee management system built with ASP.NET Core 8.0 and Entity Framework Core, demonstrating enterprise-grade architecture patterns for hierarchical data modeling and vacation tracking. The application implements a self-referential employee hierarchy with PostgreSQL as the persistence layer, utilizing EF Core Fluent API for complex relationship configuration and LINQ for advanced query operations.\n\nThe architecture follows Clean Architecture principles with clear separation of concerns across presentation (Razor Pages), service (business logic), and data access layers. Global exception handling middleware ensures consistent error responses across all endpoints, while Serilog provides structured logging with dual sinks (console and rolling file) for comprehensive observability. Health check endpoints (/health/live, /health/ready) enable Kubernetes-ready deployment monitoring.\n\nCore business logic includes vacation eligibility validation, remaining days calculation with date range queries, and recursive organizational hierarchy traversal. The EmployeeStructure service builds flat relationship mappings from hierarchical data, supporting queries like "find all superiors at level N" through efficient in-memory traversal algorithms. Complex LINQ queries filter employees by team membership and vacation date ranges, with parameterized year-based methods replacing hardcoded values for flexibility.\n\nDocker containerization uses multi-stage builds for optimized image size, with docker-compose orchestration managing PostgreSQL dependencies and health checks. PowerShell automation scripts simplify local development workflows with port conflict detection and container lifecycle management. Comprehensive xUnit test coverage validates entity relationships, business rule enforcement (null superior handling, circular reference prevention), and edge cases across vacation calculations and hierarchy operations. The framework demonstrates async/await patterns throughout, input validation via Data Annotations, and dependency injection for testability and maintainability.',
+            link: 'https://github.com/JuliaGlocka/DbStructureEmployees',
+            linkIndex: 0
         },
-        {
-            type: 'experience',
-            title: 'Senior Software Developer at TechCorp',
-            description: 'Led development of microservices architecture serving 1M+ users. Implemented CI/CD pipelines and mentored junior developers.',
-            link: ''
-        },
-        {
-            type: 'project',
-            title: 'Weather Forecast App',
-            description: 'Mobile-responsive weather application using OpenWeather API with geolocation features and 7-day forecasts.',
-            link: 'https://github.com/yourusername/weather-app'
-        }
     ],
     testing: [
         {
@@ -57,11 +46,11 @@ const data = {
             link: 'https://koulutuskalenteri.xamk.fi/en/open-amk-courses/introduction-to-video-games-creation-1-35-ects-cr-3/',
             linkIndex: 2,
         },
-/*         {
+       {
             type: 'experience',
             title: 'Syrenka Jam',
             description: 'Completed a two-week intensive game development course using Unity with the Syrenka Jam team (Farmind Studio / PlayWay). Collaborated with teammates on rapid prototyping and game production, strengthening technical skills and experience in fast-paced, collaborative game development.',
-        } */
+        } 
     ]
 };
 
@@ -292,14 +281,14 @@ function showCategory(category) {
         }
         itemsGrid.appendChild(card);
     });
-if (itemsGrid.children.length === 1) {
+/* if (itemsGrid.children.length === 1) {
     itemsGrid.classList.add('flex-center');      
     itemsGrid.children[0].style.width = '800px';}
     else if (itemsGrid.children.length <= 2) {
         itemsGrid.classList.add('flex-center');
     } else {
         itemsGrid.classList.remove('flex-center');
-    }
+    } */
 
     menuContainer.classList.add('hidden');
     setTimeout(() => {
